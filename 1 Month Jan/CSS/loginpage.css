@@ -1,0 +1,20 @@
+body{
+background: #76B852FF;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+
+.main-box{
+    background: white;
+}
+
+input{
+    background: #EBEAEA !important;
+}
+
+.Login-btn{
+background:#76B852FF ;
+color: white;
+}
