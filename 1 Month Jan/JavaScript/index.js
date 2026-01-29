@@ -1,1 +1,1 @@
-console.log("HOC Tech Solutions Pvt Ltd ")
+console.log("HOC Tech solutions Pvt Ltd ")
