@@ -1,3 +1,31 @@
-body {
-  background: yellow;
+/* universal css */
+*{
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+}
+
+body{
+  background: #ffff;
+}
+
+.gmail-container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.gmail-header{
+  display: flex;
+  text-align: center;
+  padding: 8px 12px;
+  height: 62px;
+  background: #F8FAFD;
+  }
+
+.header-search{
+  max-width: 500px;
+  background:#E9EEF6;
+  border: 0px solid black;
+  border-radius: 50px;
 }
