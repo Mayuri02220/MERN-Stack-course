@@ -29,3 +29,64 @@ body{
   border: 0px solid black;
   border-radius: 50px;
 }
+
+.compose-btn{
+  background: #C2E7FF;
+  border: none !important;
+    border-radius: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow:ba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+  color: black !important;
+  text-align: center;
+}
+
+/* side bar */
+.sidebar{
+  padding: 9px;
+  background: #F8FAFD;
+}
+
+.compose-btn:hover{
+background: #C2E7FF;
+box-shadow:ba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+}
+
+ul{
+  list-style: none;
+  padding: 0px;
+}
+
+.sidebar-nav{
+  padding-left: 10px;
+}
+
+.nav-item{
+ padding: 10px 24px 0 20px; 
+ height: 32px;
+ border-radius: 0 16px 16px 0;
+ font-size: 18px;
+ color: #202124;
+ margin: 2px 0;
+ text-decoration: none !important;
+ display: flex;
+ flex-direction: row;
+ gap: 10px;
+ align-items:center; 
+}
+
+.main-content{
+ display: flex; 
+ flex-direction: column;
+}
+
+.email-list{
+
+ background: #fff;
+}
+  
+.email-row{
+   height: 45px;
+  cursor: pointer;
+  
+}
