@@ -90,7 +90,7 @@ function App() {
 
 
             {/* side bar */}
-            <div className='col-md-3 sidebar '>
+            <div className='col-md-2 sidebar '>
               <button className='btn compose-btn d-flex align-item-center gap-3 p-3'>
                 <svg xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -103,8 +103,8 @@ function App() {
 
               <ul className='flex-column sidebar-nav '>
                 <li className='nav-item '>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-inbox" viewBox="0 0 16 16">
-                    <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4zm9.954 5H10.45a2.5 2.5 0 0 1-4.9 0H1.066l.32 2.562a.5.5 0 0 0 .497.438h12.234a.5.5 0 0 0 .496-.438zM3.809 3.563A1.5 1.5 0 0 1 4.981 3h6.038a1.5 1.5 0 0 1 1.172.563l3.7 4.625a.5.5 0 0 1 .105.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-inbox-fill" viewBox="0 0 16 16">
+                    <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4zm-1.17-.437A1.5 1.5 0 0 1 4.98 3h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374z" />
                   </svg>Inbox</li>
                 <li className='nav-item'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
                   <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
@@ -130,8 +130,8 @@ function App() {
                 <li className='nav-item'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
                 </svg>Less</li>
-                <li className='nav-item'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-inbox-fill" viewBox="0 0 16 16">
-                  <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4zm-1.17-.437A1.5 1.5 0 0 1 4.98 3h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374z" />
+                <li className='nav-item'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
+                  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
                 </svg>Important</li>
                 <li className='nav-item'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-check" viewBox="0 0 16 16">
                   <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855a.75.75 0 0 0-.124 1.329l4.995 3.178 1.531 2.406a.5.5 0 0 0 .844-.536L6.637 10.07l7.494-7.494-1.895 4.738a.5.5 0 1 0 .928.372zm-2.54 1.183L5.93 9.363 1.591 6.602z" />
@@ -165,19 +165,51 @@ function App() {
             </div>
 
 
-
-
             {/* main content */}
-            <div className='col-md-9 main-content'>
+
+            <div className='col-md-10 main-content'>
+
+              <div className=' row main-header'>
+                <div className='col-3 '>
+                  <button variant="link" className="header-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-inbox-fill" viewBox="0 0 16 16">
+                      <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4zm-1.17-.437A1.5 1.5 0 0 1 4.98 3h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374z" />
+                    </svg>Primary</button>
+                </div>
+
+                <div className='col-3'>
+                  <button variant="link" className="header-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                      <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0" />
+                      <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1m0 5.586 7 7L13.586 9l-7-7H2z" />
+                    </svg>Promotions</button>
+                </div>
+
+                <div className='col-3'>
+                  <button variant="link" className="header-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                      <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                    </svg>Social</button>
+                </div>
+
+                <div className='col-3'>
+                  <button variant="link" className="header-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                      <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z" />
+                    </svg>Updates</button>
+                </div>
+              </div>
+
               <div className='email-list'>
-                <div className='email-row d-flex align-items-center border-bottom'>
+                <div className='email-row d-flex align-items-center border-bottom read'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg"
-                     width="16" height="16"
-                     fill="currentColor" 
-                     class="bi bi-star" 
-                     viewBox="0 0 16 16">
+                      width="16" height="16"
+                      fill="currentColor"
+                      class="bi bi-star"
+                      viewBox="0 0 16 16">
                       <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
                     </svg> </button>
                   <span className='Sender p-2'>Google</span>
@@ -190,7 +222,7 @@ function App() {
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom  read'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -201,12 +233,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom read'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -217,12 +249,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom unread'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -233,12 +265,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom read'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -249,12 +281,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom unread'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -265,12 +297,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom unread'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -281,12 +313,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom read'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -297,12 +329,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom read'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -313,12 +345,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom unread'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -329,12 +361,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom read'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -345,12 +377,12 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
 
               <div className='email-list'>
-                <div className='email-row d-flex align-item-center border-bottom'>
+                <div className='email-row d-flex align-item-center border-bottom unread'>
                   <Form.Check type="checkbox" className="email-checkbox p-2" />
                   <button variant="link" className="star-btn p-0 btn p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
@@ -361,9 +393,106 @@ function App() {
                     <span className='snippet'>
                       -Get started with your new account</span>
                   </span>
-                  <span className='Time'>10:30 AM</span>
+                  <span className='Time py-2'>10:30 AM</span>
                 </div>
               </div>
+
+              <div className='email-list'>
+                <div className='email-row d-flex align-item-center border-bottom unread'>
+                  <Form.Check type="checkbox" className="email-checkbox p-2" />
+                  <button variant="link" className="star-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg> </button>
+                  <span className='Sender p-2'>Google</span>
+                  <span className='subject flex-grow-1 p-2'>Welcome to Gmail{" "}
+                    <span className='snippet'>
+                      -Get started with your new account</span>
+                  </span>
+                  <span className='Time py-2'>10:30 AM</span>
+                </div>
+              </div>
+
+              <div className='email-list'>
+                <div className='email-row d-flex align-item-center border-bottom read'>
+                  <Form.Check type="checkbox" className="email-checkbox p-2" />
+                  <button variant="link" className="star-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg> </button>
+                  <span className='Sender p-2'>Google</span>
+                  <span className='subject flex-grow-1 p-2'>Welcome to Gmail{" "}
+                    <span className='snippet'>
+                      -Get started with your new account</span>
+                  </span>
+                  <span className='Time py-2'>10:30 AM</span>
+                </div>
+              </div>
+
+              <div className='email-list'>
+                <div className='email-row d-flex align-item-center border-bottom unread'>
+                  <Form.Check type="checkbox" className="email-checkbox p-2" />
+                  <button variant="link" className="star-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg> </button>
+                  <span className='Sender p-2'>Google</span>
+                  <span className='subject flex-grow-1 p-2'>Welcome to Gmail{" "}
+                    <span className='snippet'>
+                      -Get started with your new account</span>
+                  </span>
+                  <span className='Time py-2'>10:30 AM</span>
+                </div>
+              </div>
+
+              <div className='email-list'>
+                <div className='email-row d-flex align-item-center border-bottom read'>
+                  <Form.Check type="checkbox" className="email-checkbox p-2" />
+                  <button variant="link" className="star-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg> </button>
+                  <span className='Sender p-2'>Google</span>
+                  <span className='subject flex-grow-1 p-2'>Welcome to Gmail{" "}
+                    <span className='snippet'>
+                      -Get started with your new account</span>
+                  </span>
+                  <span className='Time py-2'>10:30 AM</span>
+                </div>
+              </div>
+
+              <div className='email-list'>
+                <div className='email-row d-flex align-item-center border-bottom unread'>
+                  <Form.Check type="checkbox" className="email-checkbox p-2" />
+                  <button variant="link" className="star-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg> </button>
+                  <span className='Sender p-2'>Google</span>
+                  <span className='subject flex-grow-1 p-2'>Welcome to Gmail{" "}
+                    <span className='snippet'>
+                      -Get started with your new account</span>
+                  </span>
+                  <span className='Time py-2'>10:30 AM</span>
+                </div>
+              </div>
+
+              <div className='email-list'>
+                <div className='email-row d-flex align-item-center border-bottom read'>
+                  <Form.Check type="checkbox" className="email-checkbox p-2" />
+                  <button variant="link" className="star-btn p-0 btn p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                      <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                    </svg> </button>
+                  <span className='Sender p-2'>Google</span>
+                  <span className='subject flex-grow-1 p-2'>Welcome to Gmail{" "}
+                    <span className='snippet'>
+                      -Get started with your new account</span>
+                  </span>
+                  <span className='Time py-2'>10:30 AM</span>
+                </div>
+              </div>
+
 
             </div>
           </div>
