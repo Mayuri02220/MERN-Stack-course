@@ -100,19 +100,18 @@ ul {
   flex-direction: column;
   margin-left: 16%;
   margin-top: 4%;
-
-}
+ }
 
 .email-list {
   background: #fff;
-  padding-left: 1px;
-
+  padding-left: 0px;
+  
 }
 
 .email-row {
   height: 45px;
   cursor: pointer;
-
+  
 }
 
 .read {
@@ -133,16 +132,18 @@ ul {
   background: white;
 }
 
-/* .email-row:hover{
-box-shadow: insert 1px 0 0 rbg(218, 220, 224), inset -1px 0 0 rgb(218, 220, 224), 0 1px 2px 0 rgba(60, 64, 67, 0.3),
-0 
-} */
+.email-row:hover{
+box-shadow: 3px 0px 10px 0px #000000ae;
+}
 
 .header-btn {
   padding: 0;
-   margin: 2px 0;
+  margin: 2px 0;
   text-decoration: none !important;
   display: flex;
   flex-direction: row;
   gap: 10px;
+   cursor: pointer;
 }
+
+
