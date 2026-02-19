@@ -143,7 +143,6 @@ box-shadow: 3px 0px 10px 0px #000000ae;
   display: flex;
   flex-direction: row;
   gap: 10px;
-   cursor: pointer;
+  cursor: pointer;
 }
-
 
