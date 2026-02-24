@@ -92,20 +92,38 @@ ul {
   flex-direction: row;
   gap: 10px;
   align-items: center;
-}
+  }
 
 /* main content */
+
+.nav-header{
+  position: fixed;
+  width: 95%;
+  background-color: #F8FAFD;
+}
+
 .main-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-left: 16%;
   margin-top: 4%;
+  padding-right: 0px;
  }
+
+.box-1{
+  width: 95%;
+}
+
+.box-2{
+  width: 5%;
+  background: #F8FAFD;
+  padding-top: 40px;
+}
 
 .email-list {
   background: #fff;
   padding-left: 0px;
-  
+  padding-top: 40px;
 }
 
 .email-row {
@@ -145,4 +163,5 @@ box-shadow: 3px 0px 10px 0px #000000ae;
   gap: 10px;
   cursor: pointer;
 }
+
 
