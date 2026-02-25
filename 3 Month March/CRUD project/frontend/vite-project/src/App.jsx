@@ -5,7 +5,7 @@ function App() {
 
   return (
     <> 
-    <h1 className='text-danger text-center my-5'>CRUD - MERN Stack project</h1>
+    <h1 className='text-danger text-center my-5'>CRUD - MERN Stack Project</h1>
       <div className="container">
         <div className="row">
           <div className="col-md-6">
