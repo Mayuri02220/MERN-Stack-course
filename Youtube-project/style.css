@@ -1,0 +1,133 @@
+:root{
+    --gray:#212020;
+    --green:#009660;
+    --white:#e9e9e9;
+    --black:#0c0c0c;
+    --lgray:#716f6f;
+}
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+}
+
+
+
+html,
+body{
+    background: #010101;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-family: monospace;
+    padding: 15px 65px;
+    position: fixed;
+    width: 100%;
+}
+
+
+.nav1{
+    display: flex;
+    align-items: center;
+    background-color: black;
+  
+}  
+
+.nav1 img{
+    height: 55px;
+}
+
+.nav1 h6{
+    font-size: 15px;
+    font-weight: 100;
+    font-family: monospace;
+}
+
+.nav2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 55px;
+   }
+
+.nav2 h4{
+    font-size: 15px;
+    font-weight: 100;
+    font-family: monospace;
+}
+
+.nav2 img{
+    height: 30px;
+    border-radius: 50%;
+    width: 30px;
+}
+
+.nav3{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+   }
+
+.nav3 h4{
+    font-size: 20px;
+    font-weight: 100;
+    font-family: monospace;
+}
+
+
+
+
+@media (max-width:600px){
+   nav{
+    background-color: red;
+    padding: 10px 25px;
+   } 
+
+.nav img{
+    height: 30px; 
+}
+
+.nav1 h4{
+    font-size: 12px;
+   }
+
+.nav2 h5{
+    font-size: 12px;
+    }
+
+    .nav2{
+        display: none;
+    }
+
+    .nav3{
+        display: flex;
+    }
+}
+
+main{
+
+}
+
+.section1{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 15px  70px;
+}
+
+.section1 .left{
+    background color:red;
+    width: 45%
+}
+
+.section 2 .right{
+    bacground color:red;
+    
+}
