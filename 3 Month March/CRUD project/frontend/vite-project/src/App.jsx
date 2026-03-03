@@ -4,131 +4,155 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
-import "./style.css"
+import { ToastContainer, toast } from 'react-toastify';
+import "./style.css";
+import { useState } from 'react';
 
 function App() {
 
+  const [itemName, setItemName] = useState()
+console.log(itemName, "Typing Input field" )
+
+  const handleOnChange = (event) => {
+ setItemName(event.target.value)
+    console.log('Item Name value');
+  }
+
+  function SubmitForm(e) {
+    e.preventDefault();
+
+    console.log("Form Submitted");
+
+    toast.success("Form Submitted", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+
+  }
+
   return (
     <>
+
+      <ToastContainer position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light" />
+
       <h1 className='text-danger text-center my-5'>CRUD - MERN Stack Project</h1>
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <h3 className='border text-center'>Add Item</h3>
+            <h3 className='border text-center'>Create Item</h3>
             <Form className='form my-5'>
+
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
+                  <Form.Label>Item Name</Form.Label>
 
-                <Form.Group as={Col} controlId="formGridPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-              </Row>
-
-              <Form.Group className="mb-3" controlId="formGridAddress1">
-                <Form.Label>Address</Form.Label>
-                <Form.Control placeholder="1234 Main St" />
-              </Form.Group>
-
-              <Row className="mb-3">
-                <Form.Group as={Col} controlId="formGridCity">
-                  <Form.Label>City</Form.Label>
-                  <Form.Control />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>State</Form.Label>
-                  <Form.Select defaultValue="Choose...">
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </Form.Select>
+                  <Form.Control type="text" placeholder="Enter Item Name" 
+                  onChange ={ () => handleOnChange(event)} /> 
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridZip">
-                  <Form.Label>Zip</Form.Label>
-                  <Form.Control />
+                  <Form.Label>Discription</Form.Label>
+                  <Form.Control type='text' placeholder='Enter Discription' />
+                </Form.Group>
+              </Row>
+
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridPassword">
+                  <Form.Label>Purchase Price </Form.Label>
+                  <Form.Control type="Number" placeholder="Enter Purchase Price" />
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formGridAddress1">
+                  <Form.Label>Selling Price</Form.Label>
+                  <Form.Control type="Number" placeholder="Enter Selling Price" />
+                </Form.Group>
+              </Row>
+
+
+              <Row className="mb-3">
+                <Form.Group as={Col} controlId="formGridCity">
+                  <Form.Label>Quantity</Form.Label>
+                  <Form.Control type='Number' placeholder='Enter Quantity' />
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="formGridState">
+                  <Form.Label>Unit</Form.Label>
+                  <Form.Select defaultValue="Choose Unit">
+                    <option>Choose Unit</option>
+                    <option>Pice</option>
+                    <option>Box</option>
+                    <option>Kg</option>
+                    <option>Gram</option>
+                    <option>Littar</option>
+                  </Form.Select>
                 </Form.Group>
               </Row>
 
               <div className='text-center'>
-              <Button variant="primary" type="submit" className='w-50' >
-                Submit
-              </Button>
+                <Button variant="primary" type="submit" className='w-50' onClick={SubmitForm} >
+                  Submit
+                </Button>
               </div>
             </Form>
           </div>
 
           <div className="col-md-6">
-            <h3 className=' border text-center'>Item List</h3>
+            <h3 className=' border text-center'>Get List</h3>
             <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Email</th>
-                  <th>Password</th>
-                  <th>Address</th>
-                  <th>City</th>
-                  <th>State</th>
-                  <th>Zip</th>
+                  <th>Item Name</th>
+                  <th>Discription</th>
+                  <th>Purchase Price</th>
+                  <th>Selling Price</th>
+                  <th>Quantity</th>
+                  <th>Unit</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>mk@gmail.com</td>
-                  <td>12345</td>
-                  <td>Charegoan</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415109</td>
+                  <td>Pen</td>
+                  <td>Blue-Pen</td>
+                  <td>10</td>
+                  <td>15</td>
+                  <td>20</td>
+                  <td>Box</td>
+                  <td className='d-flex'>
+                    <button className='btn btn-success'>Edit</button>
+                    <button className='btn btn-danger mx-2'>Delete</button>
+                  </td>
                 </tr>
+
                 <tr>
-                  <td>1</td>
-                  <td>mk@gmail.com</td>
-                  <td>12345</td>
-                  <td>Charegoan</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415109</td>
-                </tr>
-                 <tr>
-                  <td>1</td>
-                  <td>mk@gmail.com</td>
-                  <td>12345</td>
-                  <td>Charegoan</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415109</td>
-                </tr>
-                 <tr>
-                  <td>1</td>
-                  <td>mk@gmail.com</td>
-                  <td>12345</td>
-                  <td>Charegoan</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415109</td>
-                </tr>
-                 <tr>
-                  <td>1</td>
-                  <td>mk@gmail.com</td>
-                  <td>12345</td>
-                  <td>Charegoan</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415109</td>
-                </tr>
-                 <tr>
-                  <td>1</td>
-                  <td>mk@gmail.com</td>
-                  <td>12345</td>
-                  <td>Charegoan</td>
-                  <td>Karad</td>
-                  <td>Maharashtra</td>
-                  <td>415109</td>
+                  <td>2</td>
+                  <td>Notebook</td>
+                  <td>Classmate</td>
+                  <td>65</td>
+                  <td>75</td>
+                  <td>10</td>
+                  <td>Box</td>
+                  <td className='d-flex'>
+                    <button className='btn btn-success'>Edit</button>
+                    <button className='btn btn-danger mx-2'>Delete</button>
+                  </td>
                 </tr>
               </tbody>
             </Table>
