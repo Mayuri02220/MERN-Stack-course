@@ -15,16 +15,27 @@
 
 // 4. API get all records - get all records from DB and show to UI frontend
 
-
-
 //Arrow funtion
- 
-const getdata = () => {
+//const getdata = () => {}
 
-}
 
-// Normal function 
+console.log("Hello Node js project started")
 
-function getdata (){
+const express = require("express")
+const app = express()
 
-}
+const mongoose = require("mongoose")
+
+app.use(express.json())
+
+mongoose.connect("mongodb://127.0.1:27017///Item-database").then( () => console.log("mongo DB connected") ).catch( (error) => console.log("error") )
+
+//schema-model-database table structure
+const itemsSchema = new mongoose.Schema({
+    name: String,
+    description : String,
+    sellingprice : Number
+})
+
+//API
+const Items = new mongoose.model("Items", itemsSchema) //table or collection name
