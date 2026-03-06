@@ -7,14 +7,17 @@ import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from 'react-toastify';
 import "./style.css";
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 function App() {
 
   const [itemName, setItemName] = useState()
-console.log(itemName, "Typing Input field" )
+  const [itemData, setData] = useState()
+
+  console.log(itemName, "Typing Input field")
 
   const handleOnChange = (event) => {
- setItemName(event.target.value)
+    setItemName(event.target.value)
     console.log('Item Name value');
   }
 
@@ -35,6 +38,26 @@ console.log(itemName, "Typing Input field" )
     });
 
   }
+
+  const getAllItemsData = async () => {
+    try {
+      const apiResponse = await fetch("http://localhost:9090/api/get-all-items")
+      const responseData = await apiResponse.json()
+      setData(responseData.data)
+
+      console.log(responseData)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllItemsData();
+  }, []);
+
+  console.log(
+    itemData, "itemData ===>"
+  )
 
   return (
     <>
@@ -61,8 +84,8 @@ console.log(itemName, "Typing Input field" )
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Item Name</Form.Label>
 
-                  <Form.Control type="text" placeholder="Enter Item Name" 
-                  onChange ={ () => handleOnChange(event)} /> 
+                  <Form.Control type="text" placeholder="Enter Item Name"
+                    onChange={() => handleOnChange(event)} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridZip">
@@ -127,33 +150,27 @@ console.log(itemName, "Typing Input field" )
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Pen</td>
-                  <td>Blue-Pen</td>
-                  <td>10</td>
-                  <td>15</td>
-                  <td>20</td>
-                  <td>Box</td>
-                  <td className='d-flex'>
-                    <button className='btn btn-success'>Edit</button>
-                    <button className='btn btn-danger mx-2'>Delete</button>
-                  </td>
-                </tr>
 
-                <tr>
-                  <td>2</td>
-                  <td>Notebook</td>
-                  <td>Classmate</td>
-                  <td>65</td>
-                  <td>75</td>
-                  <td>10</td>
-                  <td>Box</td>
-                  <td className='d-flex'>
-                    <button className='btn btn-success'>Edit</button>
-                    <button className='btn btn-danger mx-2'>Delete</button>
-                  </td>
-                </tr>
+                {itemData &&
+                  itemData.map((each, index) => {
+                    return (
+                      <tr>
+                        <td>{index + 1}</td>
+                        <td>{each.name}</td>
+                        <td>{each.description}</td>
+                        <td>{each.purchaseprice}</td>
+                        <td>{each.quantity}</td>
+                        <td>{each.sellingprice}</td>
+                        <td>{each.unit}</td>
+                        <td className='d-flex'>
+                          <button className='btn btn-success'>Edit</button>
+                          <button className='btn btn-danger mx-2'>Delete</button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                }
+
               </tbody>
             </Table>
           </div>
