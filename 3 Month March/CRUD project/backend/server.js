@@ -29,7 +29,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/Item-database").then(() => console.l
 
 //schema-model-database table structure
 const itemsSchema = new mongoose.Schema({
-    name: String,
+    name: String,     // variable : datatype 
     discription: String,
     sellingPrice: Number,
     purchasePrice: Number,
@@ -59,7 +59,7 @@ app.post("/api/create-items", async (req, res) => {
 
         await saveItem.save()
 
-        res.status(201).json({ message: "Items Created", data: saveItem })
+        res.status(201).json({ message: "Items Created", data: saveItem }) //
 
     } catch (error) {
         console.log(error)
@@ -107,8 +107,7 @@ app.get("/helth", (req, res) => {
 })
 
 //server start
-const PORT = 9090
-
+const PORT = 9090  //node js server run 
 app.listen(PORT, () => {
     console.log("Server Started")
 })

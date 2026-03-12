@@ -1,18 +1,18 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'; // desing UI
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
-import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify'; //alert msg
+import axios from 'axios'; //backend API  integration data 
 import "./style.css";
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState } from 'react'; 
+import { useEffect } from 'react';// hooks    they store data 
 
 function App() {
 
-  const [itemName, setItemName] = useState();
+  const [itemName, setItemName] = useState();  //store data in variable
   const [discription, setDiscription] = useState();
   const [purchasePrice, setPurchasePrice] = useState();
   const [sellingPrice, setSellingPrice] = useState();
@@ -24,26 +24,26 @@ function App() {
 
   async function SubmitForm(e) {
     try {
-      e.preventDefault();
+      e.preventDefault(); //page refresh
 
-      const data = {
+      const data = {  //object create
         name: itemName,
         discription: discription,
         purchasePrice: purchasePrice,
-        sellingprice: sellingPrice,
+        sellingPrice: sellingPrice,
         quantity: quantity,
         unit: unit,
       };
 
       console.log(data, "Form Submitted");
 
-      const apiResponse = await axios.post("http://localhost:9090/api/create-items",
+      const apiResponse = await axios.post("http://localhost:9090/api/create-items", 
         data).then(console.log("Yes")).catch((error) => console.log(error));
 
       console.log(apiResponse);
       getAllItemsData();
 
-      toast.success("Form Submitted", {
+      toast.success("Form Submitted", {  // tostify through alert msg
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -53,16 +53,16 @@ function App() {
         progress: undefined,
         theme: "light",
       });
-    } catch (error) {
+    } catch (error) { 
       console.log(error);
     }
   }
 
-  const getAllItemsData = async () => {
+  const getAllItemsData = async () => { 
     try {
-      const apiResponse = await fetch("http://localhost:9090/api/get-all-items")
+      const apiResponse = await fetch("http://localhost:9090/api/get-all-items"); //backend api data fetch
       const responseData = await apiResponse.json()
-      setData(responseData.data)
+      setData(responseData.data) //data strore
 
       console.log(responseData)
     } catch (error) {
@@ -70,8 +70,8 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    getAllItemsData();
+  useEffect(() => { // hook
+    getAllItemsData(); //automatically getall functioncall
   }, []);
 
 
@@ -95,12 +95,12 @@ function App() {
         <div className="row">
           <div className="col-md-6">
             <h3 className='border text-center'>Create Item</h3>
+           
             <Form className='form my-5'>
-
+              
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Item Name</Form.Label>
-
                   <Form.Control type="text" placeholder="Enter Item Name"
                     onChange={(event) => setItemName(event.target.value)}
                     value={itemName} />
@@ -180,15 +180,15 @@ function App() {
               <tbody>
 
                 {itemData &&
-                  itemData.map((each, index) => {
+                  itemData.map((each, index) => { 
                     return (
                       <tr>
                         <td>{index + 1}</td>
                         <td>{each.name}</td>
                         <td>{each.discription}</td>
                         <td>{each.purchasePrice}</td>
-                        <td>{each.quantity}</td>
                         <td>{each.sellingPrice}</td>
+                        <td>{each.quantity}</td>
                         <td>{each.unit}</td>
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
@@ -210,3 +210,4 @@ function App() {
 }
 
 export default App
+
