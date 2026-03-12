@@ -30,11 +30,11 @@ mongoose.connect("mongodb://127.0.0.1:27017/Item-database").then(() => console.l
 //schema-model-database table structure
 const itemsSchema = new mongoose.Schema({
     name: String,
-    description: String,
-    sellingprice: Number,
-    purchaseprice : Number,
-    quantity : Number,
-    unit : String
+    discription: String,
+    sellingPrice: Number,
+    purchasePrice: Number,
+    quantity: Number,
+    unit: String
 })
 
 const Items = new mongoose.model("Items", itemsSchema) //table or collection name
@@ -44,15 +44,15 @@ const Items = new mongoose.model("Items", itemsSchema) //table or collection nam
 // API-1. Create Items
 app.post("/api/create-items", async (req, res) => {
     try {
-        const { name, description, sellingprice, purchaseprice, quantity, unit  } = req.body
+        const { name, discription, purchasePrice, sellingPrice,  quantity, unit } = req.body
 
         const saveItem = new Items(
             {
                 name,
-                description,
-                sellingprice, 
-                purchaseprice, 
-                quantity, 
+                discription,
+                purchasePrice,
+                sellingPrice,
+                quantity,
                 unit
             }
         )

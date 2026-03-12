@@ -5,38 +5,57 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Table from 'react-bootstrap/Table';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 import "./style.css";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 function App() {
 
-  const [itemName, setItemName] = useState()
-  const [itemData, setData] = useState()
+  const [itemName, setItemName] = useState();
+  const [discription, setDiscription] = useState();
+  const [purchasePrice, setPurchasePrice] = useState();
+  const [sellingPrice, setSellingPrice] = useState();
+  const [quantity, setQuantity] = useState();
+  const [unit, setUnit] = useState();
+  const [itemData, setData] = useState();
 
-  console.log(itemName, "Typing Input field")
 
-  const handleOnChange = (event) => {
-    setItemName(event.target.value)
-    console.log('Item Name value');
-  }
 
-  function SubmitForm(e) {
-    e.preventDefault();
+  async function SubmitForm(e) {
+    try {
+      e.preventDefault();
 
-    console.log("Form Submitted");
+      const data = {
+        name: itemName,
+        discription: discription,
+        purchasePrice: purchasePrice,
+        sellingprice: sellingPrice,
+        quantity: quantity,
+        unit: unit,
+      };
 
-    toast.success("Form Submitted", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+      console.log(data, "Form Submitted");
 
+      const apiResponse = await axios.post("http://localhost:9090/api/create-items",
+        data).then(console.log("Yes")).catch((error) => console.log(error));
+
+      console.log(apiResponse);
+      getAllItemsData();
+
+      toast.success("Form Submitted", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const getAllItemsData = async () => {
@@ -55,9 +74,7 @@ function App() {
     getAllItemsData();
   }, []);
 
-  console.log(
-    itemData, "itemData ===>"
-  )
+
 
   return (
     <>
@@ -85,24 +102,31 @@ function App() {
                   <Form.Label>Item Name</Form.Label>
 
                   <Form.Control type="text" placeholder="Enter Item Name"
-                    onChange={() => handleOnChange(event)} />
+                    onChange={(event) => setItemName(event.target.value)}
+                    value={itemName} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridZip">
                   <Form.Label>Discription</Form.Label>
-                  <Form.Control type='text' placeholder='Enter Discription' />
+                  <Form.Control type='text' placeholder='Enter Discription'
+                    onChange={(event) => setDiscription(event.target.value)}
+                    value={discription} />
                 </Form.Group>
               </Row>
 
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Purchase Price </Form.Label>
-                  <Form.Control type="Number" placeholder="Enter Purchase Price" />
+                  <Form.Control type="Number" placeholder="Enter Purchase Price"
+                    onChange={(event) => setPurchasePrice(event.target.value)}
+                    value={purchasePrice} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridAddress1">
                   <Form.Label>Selling Price</Form.Label>
-                  <Form.Control type="Number" placeholder="Enter Selling Price" />
+                  <Form.Control type="Number" placeholder="Enter Selling Price"
+                    onChange={(event) => setSellingPrice(event.target.value)}
+                    value={sellingPrice} />
                 </Form.Group>
               </Row>
 
@@ -110,12 +134,16 @@ function App() {
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                   <Form.Label>Quantity</Form.Label>
-                  <Form.Control type='Number' placeholder='Enter Quantity' />
+                  <Form.Control type='Number' placeholder='Enter Quantity'
+                    onChange={(event) => setQuantity(event.target.value)}
+                    value={quantity} />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Unit</Form.Label>
-                  <Form.Select defaultValue="Choose Unit">
+                  <Form.Select defaultValue="Choose Unit"
+                    onChange={(event) => setUnit(event.target.value)}
+                    value={unit}>
                     <option>Choose Unit</option>
                     <option>Pice</option>
                     <option>Box</option>
@@ -157,10 +185,10 @@ function App() {
                       <tr>
                         <td>{index + 1}</td>
                         <td>{each.name}</td>
-                        <td>{each.description}</td>
-                        <td>{each.purchaseprice}</td>
+                        <td>{each.discription}</td>
+                        <td>{each.purchasePrice}</td>
                         <td>{each.quantity}</td>
-                        <td>{each.sellingprice}</td>
+                        <td>{each.sellingPrice}</td>
                         <td>{each.unit}</td>
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
