@@ -14,91 +14,33 @@
 //const getdata = () => {}
 
 
-console.log("Hello Node js project started")
-
 const express = require("express")
+
 const app = express()
-const mongoose = require("mongoose")
+
 const cors = require('cors')
+
+const { connectDB } = require("./config/db")
 
 app.use(express.json())
 app.use(cors())
 
 //DB connection
-mongoose.connect("mongodb://127.0.0.1:27017/Item-database").then(() => console.log("mongo DB connected")).catch((error) => console.log("error"))
+connectDB()
 
-//schema-model-database table structure
-const itemsSchema = new mongoose.Schema({
-    name: String,     // variable : datatype 
-    discription: String,
-    sellingPrice: Number,
-    purchasePrice: Number,
-    quantity: Number,
-    unit: String
-})
 
-const Items = new mongoose.model("Items", itemsSchema) //table or collection name
-
-//API -
 
 // API-1. Create Items
-app.post("/api/create-items", async (req, res) => {
-    try {
-        const { name, discription, purchasePrice, sellingPrice,  quantity, unit } = req.body
-
-        const saveItem = new Items(
-            {
-                name,
-                discription,
-                purchasePrice,
-                sellingPrice,
-                quantity,
-                unit
-            }
-        )
-
-        await saveItem.save()
-
-        res.status(201).json({ message: "Items Created", data: saveItem }) //
-
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-
+app.post("/api/create-items", addItem)
 
 // API-2. Update Items
-app.put("/api/Update-items", async (req, res) => {
-    try {
-
-    } catch (error) {
-        console.log(error)
-    }
-})
-
+app.put("/api/Update-items", editItem)
 
 // API-3. delete Items
-app.delete("/api/delete-items", async (req, res) => {
-    try {
-
-    } catch (error) {
-        console.log(error)
-    }
-})
+app.delete("/api/delete-items/:id", deleteItem)
 
 // API-4. get all Items
-app.get("/api/get-all-items", async (req, res) => {
-    try {
-        const items = await Items.find()
-
-        res.status(200).json({ message: " Get All Items List", data: items })
-
-    } catch (error) {
-        console.log(error)
-    }
-})
-
+app.get("/api/get-all-items", getAllItems)
 
 
 //helth API

@@ -4,10 +4,11 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
+import Modal from 'react-bootstrap/Modal';
 import { ToastContainer, toast } from 'react-toastify'; //alert msg
 import axios from 'axios'; //backend API  integration data 
 import "./style.css";
-import { useState } from 'react'; 
+import { useState } from 'react';
 import { useEffect } from 'react';// hooks    they store data 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
 
       console.log(data, "Form Submitted");
 
-      const apiResponse = await axios.post("http://localhost:9090/api/create-items", 
+      const apiResponse = await axios.post("http://localhost:9090/api/create-items",
         data).then(console.log("Yes")).catch((error) => console.log(error));
 
       console.log(apiResponse);
@@ -53,12 +54,12 @@ function App() {
         progress: undefined,
         theme: "light",
       });
-    } catch (error) { 
+    } catch (error) {
       console.log(error);
     }
   }
 
-  const getAllItemsData = async () => { 
+  const getAllItemsData = async () => {
     try {
       const apiResponse = await fetch("http://localhost:9090/api/get-all-items"); //backend api data fetch
       const responseData = await apiResponse.json()
@@ -74,6 +75,37 @@ function App() {
     getAllItemsData(); //automatically getall functioncall
   }, []);
 
+  //console.log(itemData, "itemData ==>");
+
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState()
+
+  const handleClose = () => setShow(false);
+
+  const openDeleteModel = (_id) => {
+    try {
+      setShow(true);
+      setId(_id)
+
+      console.log(_id, "id ==>");
+      console.log("call delete function");
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      console.log(id, "id ==>");
+      const apiResponse = await axios.delete(`http://localhost:9090/api/delete-items/${id}`);
+      setShow(false);
+      console.log(apiResponse)
+      getAllItemsData(); //fun call for latest data in db 
+
+    } catch (error) {
+      console.log(error)
+    }
+  };
 
 
   return (
@@ -95,9 +127,9 @@ function App() {
         <div className="row">
           <div className="col-md-6">
             <h3 className='border text-center'>Create Item</h3>
-           
+
             <Form className='form my-5'>
-              
+
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Item Name</Form.Label>
@@ -180,7 +212,7 @@ function App() {
               <tbody>
 
                 {itemData &&
-                  itemData.map((each, index) => { 
+                  itemData.map((each, index) => {
                     return (
                       <tr>
                         <td>{index + 1}</td>
@@ -192,7 +224,9 @@ function App() {
                         <td>{each.unit}</td>
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
-                          <button className='btn btn-danger mx-2'>Delete</button>
+                          <button className='btn btn-danger mx-2'
+                            onClick={ () => openDeleteModel(each._id)}>
+                            Delete</button>
                         </td>
                       </tr>
                     );
@@ -205,6 +239,23 @@ function App() {
         </div>
       </div>
 
+
+
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title> Delete Confirmation </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure want to delete this Item</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleDelete}>
+            Yes
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            No
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }
