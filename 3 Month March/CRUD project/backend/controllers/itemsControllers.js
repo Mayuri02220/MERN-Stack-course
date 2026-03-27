@@ -3,7 +3,7 @@
 import Items from "../models/itemsModel"
 
 
-const addItem = async () => {
+const addItem = async (req,res) => {
     try {
         const { name, discription, purchasePrice, sellingPrice, quantity, unit } = req.body
 
@@ -24,11 +24,12 @@ const addItem = async () => {
 
     } catch (error) {
         console.log(error)
+        res.status(201).json({message:"server Error"})
     }
 }
 
 
-const getAllItems = async () => {
+const getAllItems = async (req, res) => {
     try {
         const items = await Items.find()
 
@@ -40,21 +41,20 @@ const getAllItems = async () => {
 }
 
 
-const deleteItem = async () => {
+const deleteItem = async (req, res) => {
     try {
-        const { id } = req.params
+        const { id } = req.params;
 
         const deleteItem = await Items.findByIdAndDelete(id);
         res.status(200).json({ message: "Items Deleted", deleteItem: deleteItem });
-        //res.status(500).json({ error: error.message });
-
+    
     } catch (error) {
         console.log(error)
     }
 }
 
 
-const editItem = async () => {
+const editItem = async (req, res) => {
     try {
 
     } catch (error) {
