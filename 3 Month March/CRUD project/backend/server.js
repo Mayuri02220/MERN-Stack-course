@@ -22,10 +22,12 @@ const cors = require('cors')
 
 const { connectDB } = require("./config/db")
 
+const {addItem, getAllItems, deleteItem, editItem} =require('./controllers/itemsControllers')
+
 app.use(express.json())
 app.use(cors())
 
-//DB connection
+//MongoDB connection
 connectDB()
 
 
@@ -50,6 +52,7 @@ app.get("/helth", (req, res) => {
 
 //server start
 const PORT = 9090  //node js server run 
+
 app.listen(PORT, () => {
     console.log("Server Started")
 })

@@ -1,6 +1,6 @@
 //Main code------
 
-import Items from "../models/itemsModel"
+const Items = require("./../models/itemsModel")
 
 
 const addItem = async (req,res) => {
@@ -24,7 +24,7 @@ const addItem = async (req,res) => {
 
     } catch (error) {
         console.log(error)
-        res.status(201).json({message:"server Error"})
+       // res.status(201).json({message:"server Error"})
     }
 }
 

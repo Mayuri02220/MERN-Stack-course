@@ -37,14 +37,11 @@ getMyFullName()
 
 
 
-
 //Array - index   0       1         2          3       
 const items =["test 1", "test 2", "test 3", "test 4"]
 
 console.log(items, "Array of items")
 console.log(items[0], "-print only index 0 -(first value)")
-
-
 
 
 //Object

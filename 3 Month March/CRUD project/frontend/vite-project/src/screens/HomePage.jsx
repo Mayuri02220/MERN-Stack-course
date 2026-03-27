@@ -38,8 +38,16 @@ function HomePage() {
 
       console.log(data, "Form Submitted");
 
+
       const apiResponse = await axios.post("http://localhost:9090/api/create-items",
-        data).then(console.log("Yes")).catch((error) => console.log(error));
+      {
+        name: itemName,
+        discription: discription,
+        purchasePrice: purchasePrice,
+        sellingPrice: sellingPrice,
+        quantity: quantity,
+        unit: unit,
+    }).then(console.log("Yes")).catch((error) => console.log(error));
 
       console.log(apiResponse);
       getAllItemsData();
@@ -54,6 +62,7 @@ function HomePage() {
         progress: undefined,
         theme: "light",
       });
+
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +71,7 @@ function HomePage() {
   const getAllItemsData = async () => {
     try {
       const apiResponse = await fetch("http://localhost:9090/api/get-all-items"); //backend api data fetch
-      const responseData = await apiResponse.json()
+      const responseData = await apiResponse.json();
       setData(responseData.data) //data strore
 
       console.log(responseData)
@@ -181,7 +190,7 @@ function HomePage() {
                     <option>Box</option>
                     <option>Kg</option>
                     <option>Gram</option>
-                    <option>Littar</option>
+                    <option>Litter</option>
                   </Form.Select>
                 </Form.Group>
               </Row>
