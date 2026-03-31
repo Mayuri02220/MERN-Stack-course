@@ -1,9 +1,7 @@
 //javaScript
 //React js
 //Node js
-
 const { rejects } = require("node:assert")
-
 //const { get } = require("mongoose")
 
 // Synchronous and asynchronous
@@ -11,7 +9,7 @@ const { rejects } = require("node:assert")
 //Promise
 //async/await
 
-// set timeout
+// 1.set timeout
 
 //console.log(1)
 //console.log(11)
@@ -49,8 +47,6 @@ const myPromise = new Promise((resolve, reject) => {
 })
 
 myPromise.then((res) => console.log(res)).catch((error) => console.log(error))
-
-
 
 //3. async/await 
 const myFunction = async () =>{
