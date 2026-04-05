@@ -10,8 +10,9 @@ import axios from 'axios'; //backend API  integration data
 import "./../style.css";
 import { useState } from 'react';
 import { useEffect } from 'react';// hooks    they store data 
+import AuthNavBar from './../components/AuthNavBar.jsx';
 
-function HomePage() {
+function Dashboard() {
 
   const [itemName, setItemName] = useState();  //store data in variable
   const [discription, setDiscription] = useState();
@@ -119,6 +120,8 @@ function HomePage() {
 
   return (
     <>
+
+      <AuthNavBar/>
 
       <ToastContainer position="top-right"
         autoClose={5000}
@@ -269,5 +272,5 @@ function HomePage() {
   )
 }
 
-export default HomePage
+export default Dashboard
 
