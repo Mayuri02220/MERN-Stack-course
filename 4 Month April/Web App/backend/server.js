@@ -1,3 +1,6 @@
+require('dotenv').config() // or import 'dotenv/config' if you're using ES6
+console.log(process.env.PORT ,"==>") 
+
 // Backend Project
 // Node js
 // Express js
@@ -51,8 +54,8 @@ app.get("/helth", (req, res) => {
 })
 
 //server start
-const PORT = 9090  //node js server run 
+const PORT = process.env.PORT || 1010  //node js server run 
 
 app.listen(PORT, () => {
-    console.log("Server Started")
+    console.log(`server is running 9090`)
 })

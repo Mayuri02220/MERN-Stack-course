@@ -40,7 +40,7 @@ function Items() {
       console.log(data, "Form Submitted");
 
 
-      const apiResponse = await axios.post("http://localhost:9090/api/create-items",
+      const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/create-items`,
       {
         name: itemName,
         discription: discription,
@@ -71,7 +71,7 @@ function Items() {
 
   const getAllItemsData = async () => {
     try {
-      const apiResponse = await fetch("http://localhost:9090/api/get-all-items"); //backend api data fetch
+      const apiResponse = await fetch(`${import.meta.env.VITE_API_URL_BACKEND}/get-all-items`); //backend api data fetch
       const responseData = await apiResponse.json();
       setData(responseData.data) //data strore
 
@@ -107,7 +107,7 @@ function Items() {
   const handleDelete = async () => {
     try {
       console.log(id, "id ==>");
-      const apiResponse = await axios.delete(`http://localhost:9090/api/delete-items/${id}`);
+      const apiResponse = await axios.delete(`${import.meta.env.VITE_API_URL_BACKEND}/delete-items/${id}`);
       setShow(false);
       console.log(apiResponse)
       getAllItemsData(); //fun call for latest data in db 
@@ -210,7 +210,7 @@ function Items() {
             <h3 className=' border text-center'>Get List</h3>
             <Table striped bordered hover>
               <thead>
-                <tr>
+                <tr >
                   <th>ID</th>
                   <th>Item Name</th>
                   <th>Discription</th>
@@ -226,7 +226,7 @@ function Items() {
                 {itemData &&
                   itemData.map((each, index) => {
                     return (
-                      <tr>
+                      <tr key={index + 1}>
                         <td>{index + 1}</td>
                         <td>{each.name}</td>
                         <td>{each.discription}</td>
