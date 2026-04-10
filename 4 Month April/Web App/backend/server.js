@@ -26,6 +26,9 @@ const cors = require('cors')
 const { connectDB } = require("./config/db")
 
 const {addItem, getAllItems, deleteItem, editItem} =require('./controllers/itemsControllers')
+const { get } = require('mongoose')
+const { login, register } = require('./controllers/authControllers')
+const { getDashboardCount } = require('./controllers/dashboardControllers')
 
 app.use(express.json())
 app.use(cors())
@@ -34,7 +37,13 @@ app.use(cors())
 connectDB()
 
 
+//Auth APIs Authentication API
+app.post("/api/login", login)
+app.post("/api/register", register)
 
+
+
+//Items API
 // API-1. Create Items
 app.post("/api/create-items", addItem)
 
@@ -59,3 +68,8 @@ const PORT = process.env.PORT || 1010  //node js server run
 app.listen(PORT, () => {
     console.log(`server is running 9090`)
 })
+
+
+//Dashboard APIs
+//get all count to show on dashboard
+app.get("/api/get-dashboard",getDashboardCount)
