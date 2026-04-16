@@ -9,6 +9,8 @@ const usersSchema = new mongoose.Schema({
 
     //variable : datatype 
     name : String,
+    city : String,
+    mob : Number,
     email : String,
     password : String
    
