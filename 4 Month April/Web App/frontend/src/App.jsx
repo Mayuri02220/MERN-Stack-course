@@ -5,16 +5,26 @@ import Register from './screens/Register';
 import Items from './screens/Items'
 import Dashboard from './screens/Dashboard';
 import AuthNavBar from "./components/AuthNavBar"
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const App = () => {
 
-   console.log(import.meta.env.VITE_API_URL_BACKEND, "==>")
+  console.log(import.meta.env.VITE_API_URL_BACKEND, "==>")
 
   return (
     <BrowserRouter>
       <div>
-        <AuthNavBar/>
+        <ToastContainer position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light" />
+        <AuthNavBar />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />

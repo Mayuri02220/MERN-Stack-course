@@ -18,7 +18,7 @@ const Login = () => {
             <input type='text' placeholder='Enter Password'></input>
             <br /> <br />
             
-            <button className='btn-btn-success text-white'> 
+            <button  className="btn btn-success text=white"> 
               <a href='/Dashboard'>Login</a></button>
               <br />
               <p className='text-danger'>Don't have an account?<a href='/Register'>Register</a> </p>
