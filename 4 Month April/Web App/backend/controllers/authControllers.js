@@ -24,6 +24,7 @@ const register = async (req, res) => {
             password: pass
         })
 
+        //token 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
             expiresIn: "30d"
         })
@@ -55,11 +56,9 @@ const login = async (req, res) => {
 
         const { email, pass } = req.body
 
-        const user = await Users.findOne({
-            email, password: pass
-        })
+        const user = await Users.findOne({ email, password: pass })
 
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+        const token = jwt.sign({ userId: user?._id }, process.env.JWT_SECRET_KEY, {
             expiresIn: "30d"
         })
 

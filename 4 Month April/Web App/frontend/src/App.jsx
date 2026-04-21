@@ -14,6 +14,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div>
+        
         <ToastContainer position="top-right"
           autoClose={5000}
           hideProgressBar={false}
@@ -24,6 +25,7 @@ const App = () => {
           draggable
           pauseOnHover
           theme="light" />
+
         <AuthNavBar />
         <Routes>
           <Route path="/" element={<Login />} />

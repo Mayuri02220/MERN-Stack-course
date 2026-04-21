@@ -8,14 +8,12 @@ const mongoose = require("mongoose")
 const usersSchema = new mongoose.Schema({
 
     //variable : datatype 
-    name : String,
-    city : String,
-    mob : Number,
-    email : String,
-    password : String
-   
+    name: String,
+    email: String,
+    password: String
+
 })
 
-const Users = mongoose.model("Users",usersSchema )
+const Users = mongoose.model("Users", usersSchema)
 
 module.exports = Users

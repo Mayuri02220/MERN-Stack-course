@@ -29,6 +29,9 @@ const {addItem, getAllItems, deleteItem, editItem} =require('./controllers/items
 const { get } = require('mongoose')
 const { login, register } = require('./controllers/authControllers')
 const { getDashboardCount } = require('./controllers/dashboardControllers')
+const { authMiddleware } = require('./authMiddleware/authMiddleware')
+
+
 
 app.use(express.json())
 app.use(cors())
@@ -36,16 +39,17 @@ app.use(cors())
 //MongoDB connection
 connectDB()
 
+// API routes
+
 
 //Auth APIs Authentication API
 app.post("/api/login", login)
 app.post("/api/register", register)
 
 
-
-//Items API
+//Item API
 // API-1. Create Items
-app.post("/api/create-items", addItem)
+app.post("/api/create-items", authMiddleware, addItem)
 
 // API-2. Update Items
 app.put("/api/Update-items", editItem)
