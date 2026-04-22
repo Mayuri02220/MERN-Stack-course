@@ -5,7 +5,7 @@ const AuthNavBar = () => {
     <div>
       <div className='d-flex  bg-light'>
         <div className='m-3'>
-          <h3>LOGO</h3>
+          <h3>LOGO</h3> 
         </div>
         <div className='m-3'>
           <h3><a href="/dashboard">Dashboard</a></h3>

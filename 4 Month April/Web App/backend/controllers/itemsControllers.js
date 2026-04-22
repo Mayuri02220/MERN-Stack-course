@@ -1,10 +1,16 @@
 //Main code------
 
+
+//
+
 const Items = require("./../models/itemsModel")
 
 
 const addItem = async (req,res) => {
     try {
+
+        console.log(req.userId, "req ==user")
+        
         const { name, discription, purchasePrice, sellingPrice, quantity, unit } = req.body
 
         const saveItem = new Items(
@@ -14,7 +20,9 @@ const addItem = async (req,res) => {
                 purchasePrice,
                 sellingPrice,
                 quantity,
-                unit
+                unit,
+
+                userId : req.userId
             }
         )
 

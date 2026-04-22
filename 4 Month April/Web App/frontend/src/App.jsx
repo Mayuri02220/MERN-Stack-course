@@ -15,7 +15,8 @@ const App = () => {
     <BrowserRouter>
       <div>
         
-        <ToastContainer position="top-right"
+        //ToastContainer resend notification popups on screen
+        <ToastContainer position="top-right"       // tostify through alert msg show
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}

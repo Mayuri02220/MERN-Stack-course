@@ -9,7 +9,7 @@ const Users = require("../models/userModel")
 const register = async (req, res) => {
     try {
 
-        const { name, city, mob, email, pass } = req.body
+        const { name, email, pass } = req.body
 
         const existingUser = await Users.findOne({ email: email })
         if (existingUser) {
@@ -18,14 +18,12 @@ const register = async (req, res) => {
 
         const user = await Users.create({
             name,
-            city,
-            mob,
             email,
             password: pass
         })
 
         //token 
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
+        const token = jwt.sign({ userId: user?._id }, process.env.JWT_SECRET_KEY, {
             expiresIn: "30d"
         })
 
@@ -34,7 +32,7 @@ const register = async (req, res) => {
             data: user,
             token: token
         })
-
+ 
     } catch (error) {
         console.log(error)
 

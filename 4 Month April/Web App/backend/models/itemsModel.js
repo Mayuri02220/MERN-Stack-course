@@ -11,6 +11,8 @@ const itemsSchema = new mongoose.Schema({
         ref : "Users",
         required : true
     },
+    
+    
     //variable : datatype 
     name: String,
     discription: String,
