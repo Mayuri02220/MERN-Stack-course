@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 
 const authMiddleware = async (req, res, next) => {
     try {
-
+                               
         const token = req.header("x-auth-token") || req.header("Authorization")?.replace("Bearer", "");
         if (token) {
 

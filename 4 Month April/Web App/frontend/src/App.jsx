@@ -14,10 +14,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <div>
-        
-        //ToastContainer resend notification popups on screen
-        <ToastContainer position="top-right"       // tostify through alert msg show
-          autoClose={5000}
+
+
+        <ToastContainer position="top-right"  //ToastContainer resend notification popups on screen      
+          autoClose={5000}                    // tostify through alert msg show 
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick={false}
@@ -33,6 +33,9 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/items" element={<Items />} />
           <Route path="/dashboard" element={<Dashboard />} />
+
+          {/* <Route path="/items" element={ <ProtectedRoutes> <Items/> </ProtectedRoutes> } />
+          <Route path="/dashboard" element={ <ProtectedRoutes> <Dashboard/> </ProtectedRoutes> } /> */}
         </Routes>
       </div>
     </BrowserRouter>

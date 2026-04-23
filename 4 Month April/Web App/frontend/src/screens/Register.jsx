@@ -7,26 +7,28 @@ import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [Name, setName] = useState();
-    const [Email, setEmail] = useState();
-    const [Password, setPassword] = useState();
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   const SubmitRegisterform = async () => {
-    
+
     const payload = {
-      name: "name",
-      email: "email",
-      password: "password"
+      name: name,
+      email: email,
+      password: password
     };
 
-    const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/register`, payload)
-      
-    .then((req) => ("/dashboard"))
-    .catch((error) => console.log(error));
+    const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/register`, payload);
 
-    console.log(apiResponse) ;
+
+    console.log("user Registered successfully", apiResponse.data.token);
+    localStorage.setItem("token", apiResponse.data.token);
+
+    navigate("/dashboard")
+    console.log(apiResponse, "apiResponse==>");
   };
 
   return (
@@ -37,20 +39,20 @@ const navigate = useNavigate();
 
           <input type='text' placeholder='Enter Name'
             name="name"
-            onChange={(event) => setName(event.target.value)}  value={Name}
-            ></input>
+            onChange={(event) => setName(event.target.value)} value={name}
+          ></input>
           <br /> <br />
 
           <input type='text' placeholder='Enter Email'
-            name="email" 
-            onChange={(event) => setEmail(event.target.value)} value={Email}
-            ></input>
+            name="email"
+            onChange={(event) => setEmail(event.target.value)} value={email}
+          ></input>
           <br /> <br />
 
           <input type='text' placeholder='Enter Password'
-            name="password" 
-            onChange={(event) => setPassword(event.target.value)} value={Password}
-            ></input>
+            name="password"
+            onChange={(event) => setPassword(event.target.value)} value={password}
+          ></input>
           <br /> <br />
 
           <Button className="btn btn-success" onClick={SubmitRegisterform}>

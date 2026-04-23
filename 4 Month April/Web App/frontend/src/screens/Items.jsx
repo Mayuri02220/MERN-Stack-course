@@ -22,36 +22,36 @@ function Items() {
   const [unit, setUnit] = useState();
   const [itemData, setData] = useState();
 
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState()
 
+  const getToken = () => {
+    const token = localStorage.getItem("token");
+    return token;
+  };
 
   async function SubmitForm(e) {
     try {
       e.preventDefault(); //page refresh
 
       const data = {  //object create
-        name: itemName,
-        discription: discription,
-        purchasePrice: purchasePrice,
-        sellingPrice: sellingPrice,
-        quantity: quantity,
-        unit: unit,
+        name : itemName,
+        discription : discription,
+        purchasePrice : purchasePrice,
+        sellingPrice : sellingPrice,
+        quantity : quantity,
+        unit : unit
       };
-
       console.log(data, "Form Submitted");
 
+      const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/create-items`, data,{
+        headers : {"x-auth-token" : getToken()}
+      })
+       
+        .then(console.log("Yes")).catch((error) => console.log(error));
 
-      const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/create-items`,
-      {
-        name: itemName,
-        discription: discription,
-        purchasePrice: purchasePrice,
-        sellingPrice: sellingPrice,
-        quantity: quantity,
-        unit: unit,
-    }).then(console.log("Yes")).catch((error) => console.log(error));
-
-      console.log(apiResponse);
-      getAllItemsData();
+      console.log(apiResponse, "apiResponse ==>");
+      
 
       toast.success("Form Submitted", {  // tostify through alert msg
         position: "top-right",
@@ -82,15 +82,15 @@ function Items() {
   };
 
   useEffect(() => { // hook
-    getAllItemsData(); //automatically getall functioncall
+    getAllItemsData(); //automatically getall functioncall when page first load
+
+    getToken();
   }, []);
 
-  //console.log(itemData, "itemData ==>");
 
-  const [show, setShow] = useState(false);
-  const [id, setId] = useState()
 
   const handleClose = () => setShow(false);
+
 
   const openDeleteModel = (_id) => {
     try {
@@ -120,8 +120,6 @@ function Items() {
 
   return (
     <>
-
-      
 
       <ToastContainer position="top-right"
         autoClose={5000}
@@ -237,7 +235,7 @@ function Items() {
                         <td className='d-flex'>
                           <button className='btn btn-success'>Edit</button>
                           <button className='btn btn-danger mx-2'
-                            onClick={ () => openDeleteModel(each._id)}>
+                            onClick={() => openDeleteModel(each._id)}>
                             Delete</button>
                         </td>
                       </tr>
@@ -250,8 +248,6 @@ function Items() {
           </div>
         </div>
       </div>
-
-
 
 
       <Modal show={show} onHide={handleClose}>
