@@ -6,10 +6,12 @@ import Items from './screens/Items'
 import Dashboard from './screens/Dashboard';
 import AuthNavBar from "./components/AuthNavBar"
 import { ToastContainer, toast } from 'react-toastify';
+import { ProtectedRoute, PublicRoute } from "./components/ProtectedRoutes"
+
 
 const App = () => {
 
-  console.log(import.meta.env.VITE_API_URL_BACKEND, "==>")
+ // console.log(import.meta.env.VITE_API_URL_BACKEND, "==>")
 
   return (
     <BrowserRouter>
@@ -29,13 +31,20 @@ const App = () => {
 
         <AuthNavBar />
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/items" element={<Items />} />
-          <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* <Route path="/items" element={ <ProtectedRoutes> <Items/> </ProtectedRoutes> } />
-          <Route path="/dashboard" element={ <ProtectedRoutes> <Dashboard/> </ProtectedRoutes> } /> */}
+          <Route path="/" element=
+            {<PublicRoute><Login /></PublicRoute>} />
+
+          <Route path="/register" element=
+            {<PublicRoute><Register /></PublicRoute>} />
+
+          <Route path="/items" element=
+            {<ProtectedRoutes><Items /></ProtectedRoutes>} />
+
+
+          <Route path="/dashboard" element=
+            {<ProtectedRoutes> <Dashboard /> </ProtectedRoutes>} />
+
         </Routes>
       </div>
     </BrowserRouter>

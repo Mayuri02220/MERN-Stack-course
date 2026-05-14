@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
 
 const Register = () => {
 
@@ -15,21 +16,29 @@ const Register = () => {
 
   const SubmitRegisterform = async () => {
 
-    const payload = {
-      name: name,
-      email: email,
-      password: password
-    };
+    try {
+      const apiResponse = await axios.post
+        (`${import.meta.env.VITE_API_URL_BACKEND}/register`,
+          {
+            name: name,
+            email: email,
+            pass: password
+          }
+        );
 
-    const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/register`, payload);
 
+      console.log(apiResponse.data, "register response");
+      localStorage.setItem("token", apiResponse.data.token);
+      toast.success("Account Created Successfully!")
 
-    console.log("user Registered successfully", apiResponse.data.token);
-    localStorage.setItem("token", apiResponse.data.token);
+      navigate("/dashboard")
 
-    navigate("/dashboard")
-    console.log(apiResponse, "apiResponse==>");
+    } catch (error) {
+      console.log(error)
+      toast.error(error.response?.data?.message || "Registration Failed!")
+    }
   };
+
 
   return (
     <div>
@@ -39,25 +48,26 @@ const Register = () => {
 
           <input type='text' placeholder='Enter Name'
             name="name"
-            onChange={(event) => setName(event.target.value)} value={name}
-          ></input>
+            onChange={(event) => setName(event.target.value)} 
+            value={name}></input>
           <br /> <br />
 
           <input type='text' placeholder='Enter Email'
             name="email"
-            onChange={(event) => setEmail(event.target.value)} value={email}
-          ></input>
+            onChange={(event) => setEmail(event.target.value)} 
+          value={email} ></input>
           <br /> <br />
 
           <input type='text' placeholder='Enter Password'
             name="password"
-            onChange={(event) => setPassword(event.target.value)} value={password}
-          ></input>
+            onChange={(event) => setPassword(event.target.value)} 
+          value={password}></input>
           <br /> <br />
 
           <Button className="btn btn-success" onClick={SubmitRegisterform}>
             Register </Button>
           <br /> <br />
+          
           <p className='text-danger'>Already have an account?<a href='/'>Login</a> </p>
         </Card.Body>
       </Card>

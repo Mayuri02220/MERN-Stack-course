@@ -32,8 +32,9 @@ const { getDashboardCount } = require('./controllers/dashboardControllers')
 const { authMiddleware } = require('./authMiddleware/authMiddleware')
 
 
-
+// frontend converts all data in json format
 app.use(express.json())
+//middleware: enable Cross-origin Resource sharing
 app.use(cors())
 
 //MongoDB connection
@@ -61,19 +62,21 @@ app.delete("/api/delete-items/:id", deleteItem)
 app.get("/api/get-all-items", getAllItems)
 
 
+//Dashboard APIs
+//get all count to show on dashboard
+app.get("/api/get-dashboard",getDashboardCount)
+
+
 //helth API
 app.get("/helth", (req, res) => {
     res.status(200).json({ message: "Server is Runing" })
 })
 
 //server start
-const PORT = process.env.PORT || 1010  //node js server run 
+const PORT = process.env.PORT || 1010 //3131 //node js server run 
 
 app.listen(PORT, () => {
     console.log(`server is running 9090`)
 })
 
 
-//Dashboard APIs
-//get all count to show on dashboard
-app.get("/api/get-dashboard",getDashboardCount)

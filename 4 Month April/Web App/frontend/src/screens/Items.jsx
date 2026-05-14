@@ -22,60 +22,74 @@ function Items() {
   const [unit, setUnit] = useState();
   const [itemData, setData] = useState();
 
-  const [show, setShow] = useState(false);
-  const [id, setId] = useState()
+  // const [show, setShow] = useState(false);
+  // const [id, setId] = useState()
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [deleteId, setDeleteId] = useState("")
+
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [editItem, setEditItem] = useState(null)
 
   const getToken = () => {
     const token = localStorage.getItem("token");
-    return token;
-  };
+    //   return token;
+    // };
 
-  async function SubmitForm(e) {
-    try {
-      e.preventDefault(); //page refresh
+    //async function SubmitForm(e) {
+    const SubmitForm = async (e) => {
+      try {
+        e.preventDefault(); //page refresh
 
-      const data = {  //object create
-        name : itemName,
-        discription : discription,
-        purchasePrice : purchasePrice,
-        sellingPrice : sellingPrice,
-        quantity : quantity,
-        unit : unit
-      };
-      console.log(data, "Form Submitted");
+        const data = {  //object create
+          name: itemName,
+          discription: discription,
+          purchasePrice: purchasePrice,
+          sellingPrice: sellingPrice,
+          quantity: quantity,
+          unit: unit
+        };
+        //console.log(data, "Form Submitted");
 
-      const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/create-items`, data,{
-        headers : {"x-auth-token" : getToken()}
-      })
-       
-        .then(console.log("Yes")).catch((error) => console.log(error));
+        await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/create-items`, data,
+          {
+            headers: { "x-auth-token": getToken() }
+          })
 
-      console.log(apiResponse, "apiResponse ==>");
-      
+        setItemName("")
+        setDiscription("")
+        setPurchasePrice("")
+        setSellingPrice("")
+        setQuantity("")
+        setUnit("")
 
-      toast.success("Form Submitted", {  // tostify through alert msg
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+        // Refresh item list
+        getAllItemsData()
 
-    } catch (error) {
-      console.log(error);
+        // .then(console.log("Yes")).catch((error) => console.log(error));
+        //console.log(apiResponse, "apiResponse ==>");
+
+
+        toast.success("Form Submitted")
+
+      } catch (error) {
+        console.log(error);
+        toast.error("Failed to add item!")
+      }
     }
   }
 
   const getAllItemsData = async () => {
     try {
-      const apiResponse = await fetch(`${import.meta.env.VITE_API_URL_BACKEND}/get-all-items`); //backend api data fetch
-      const responseData = await apiResponse.json();
-      setData(responseData.data) //data strore
+      const apiResponse = await axios.get
+        (`${import.meta.env.VITE_API_URL_BACKEND}/get-all-items`,
+          {
+            headers: { "x-auth-token": getToken() }
+          }
+        );           //backend api data fetch
 
-      console.log(responseData)
+      setData(responseData.data);
+
     } catch (error) {
       console.log(error);
     }
@@ -83,45 +97,95 @@ function Items() {
 
   useEffect(() => { // hook
     getAllItemsData(); //automatically getall functioncall when page first load
-
-    getToken();
   }, []);
 
 
-
-  const handleClose = () => setShow(false);
+  //const handleClose = () => setShow(false);
 
 
   const openDeleteModel = (_id) => {
-    try {
-      setShow(true);
-      setId(_id)
+    setShowDeleteModal(true)
+    setDeleteId(_id)
+    // try {
+    //   setShow(true);
+    //   setId(_id)
 
-      console.log(_id, "id ==>");
-      console.log("call delete function");
-    } catch (error) {
-      console.log(error)
-    }
+    //   console.log(_id, "id ==>");
+    //   console.log("call delete function");
+    // } catch (error) {
+    //   console.log(error)
+    // }
   };
 
   const handleDelete = async () => {
     try {
-      console.log(id, "id ==>");
-      const apiResponse = await axios.delete(`${import.meta.env.VITE_API_URL_BACKEND}/delete-items/${id}`);
-      setShow(false);
-      console.log(apiResponse)
-      getAllItemsData(); //fun call for latest data in db 
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL_BACKED}/delete-item/${deleteId}`,
+        {
+          headers: { "x-auth-token": getToken() }
+        }
+      )
+
+      setShowDeleteModal(false)
+      getAllItemsData()
+      toast.success("Item Deleted!")
 
     } catch (error) {
       console.log(error)
+      toast.error("Failed to delete item!")
     }
-  };
+  }
+  //     console.log(id, "id ==>");
+  //     const apiResponse = await axios.delete(`${import.meta.env.VITE_API_URL_BACKEND}/delete-items/${id}`);
+  //     setShow(false);
+  //     console.log(apiResponse)
+  //     getAllItemsData(); //fun call for latest data in db 
+
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // };
+
+  const openEditModal = (item) => {  // Store the item we want to edit in state
+    setEditItem(item)
+    setShowEditModal(true)
+  }
+
+  // EDIT - Submit updated item to API
+  const handleEditSubmit = async () => {
+    try {
+      await axios.put
+        (`${import.meta.env.VITE_API_URL_BACKED}/update-item`,
+          {    // item to update
+            id: editItem._id,
+            name: editItem.name,
+            decription: editItem.decription,
+            sellingPrice: editItem.sellingPrice,
+            purchasePrice: editItem.purchasePrice,
+            quantity: editItem.quantity,
+            unit: editItem.unit
+          },
+
+          {
+            headers: { "x-auth-token": getToken() }
+          }
+        )
+
+      setShowEditModal(false)
+      getAllItemsData()
+      toast.success("Item Updated!")
+
+    } catch (error) {
+      console.log(error)
+      toast.error("Failed to update item!")
+    }
+  }
 
 
   return (
     <>
 
-      <ToastContainer position="top-right"
+      {/* <ToastContainer position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -130,7 +194,7 @@ function Items() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light" />
+        theme="light" /> */}
 
       <h1 className='text-danger text-center my-5'> <b>Manage Items</b></h1>
       <div className="container">
@@ -198,7 +262,7 @@ function Items() {
 
               <div className='text-center'>
                 <Button variant="primary" type="submit" className='w-50' onClick={SubmitForm} >
-                  Submit
+                  Add Item
                 </Button>
               </div>
             </Form>
@@ -209,7 +273,7 @@ function Items() {
             <Table striped bordered hover>
               <thead>
                 <tr >
-                  <th>ID</th>
+                  <th>SrNo</th>
                   <th>Item Name</th>
                   <th>Discription</th>
                   <th>Purchase Price</th>
@@ -221,27 +285,35 @@ function Items() {
               </thead>
               <tbody>
 
-                {itemData &&
-                  itemData.map((each, index) => {
-                    return (
-                      <tr key={index + 1}>
-                        <td>{index + 1}</td>
-                        <td>{each.name}</td>
-                        <td>{each.discription}</td>
-                        <td>{each.purchasePrice}</td>
-                        <td>{each.sellingPrice}</td>
-                        <td>{each.quantity}</td>
-                        <td>{each.unit}</td>
-                        <td className='d-flex'>
-                          <button className='btn btn-success'>Edit</button>
-                          <button className='btn btn-danger mx-2'
-                            onClick={() => openDeleteModel(each._id)}>
-                            Delete</button>
-                        </td>
-                      </tr>
-                    );
-                  })
+                {itemData && itemData.map((item, index) => {
+                  <tr key={item + 1}>
+                    <td>{index + 1}</td>
+                    <td>{each.name}</td>
+                    <td>{each.discription}</td>
+                    <td>{each.purchasePrice}</td>
+                    <td>{each.sellingPrice}</td>
+                    <td>{each.quantity}</td>
+                    <td>{each.unit}</td>
+
+                    <td className='d-flex'>
+                      <button className="btn btn-success btn-sm me-1"
+                        onClick={() => openEditModal(item)}>
+                        Edit </button>
+                    
+                      <button className='btn btn-danger mx-2'
+                        onClick={() => openDeleteModel(item._id)}>
+                        Delete</button>
+                    </td>
+                  </tr>
                 }
+                )
+                }
+
+                {itemData && itemData.length === 0 && (
+                  <tr>
+                    <td colSpan="8" className="text-center text-muted">No items found. Add your first item!</td>
+                  </tr>
+                )}
 
               </tbody>
             </Table>
@@ -250,21 +322,113 @@ function Items() {
       </div>
 
 
-      <Modal show={show} onHide={handleClose}>
+      {/* <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+             <Modal.Title> Delete Confirmation </Modal.Title>
+           </Modal.Header>
+           <Modal.Body>Are you sure want to delete this Item</Modal.Body>
+           <Modal.Footer>
+             <Button variant="secondary" onClick={handleDelete}>
+               Yes
+             </Button>
+             <Button variant="primary" onClick={handleClose}>
+               No
+             </Button>
+           </Modal.Footer>
+         </Modal> */}
+
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title> Delete Confirmation </Modal.Title>
+          <Modal.Title>Delete Confirmation</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure want to delete this Item</Modal.Body>
+        <Modal.Body>Are you sure you want to delete this item?</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleDelete}>
-            Yes
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            No
-          </Button>
+          <Button variant="danger" onClick={handleDelete}>Yes, Delete</Button>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>Cancel</Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* ---- EDIT Modal ---- */}
+      <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Item</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {editItem && (
+            <Form>
+              <Form.Group className="mb-2">
+                <Form.Label>Item Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={editItem.name}
+                  // Update editItem state when user types
+                  onChange={(e) => setEditItem({ ...editItem, name: e.target.value })}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-2">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={editItem.decription}
+                  onChange={(e) => setEditItem({ ...editItem, decription: e.target.value })}
+                />
+              </Form.Group>
+
+              <Row>
+                <Form.Group as={Col} className="mb-2">
+                  <Form.Label>Purchase Price</Form.Label>
+                  <Form.Control
+                    type="number"
+                    value={editItem.purchasePrice}
+                    onChange={(e) => setEditItem({ ...editItem, purchasePrice: e.target.value })}
+                  />
+                </Form.Group>
+
+                <Form.Group as={Col} className="mb-2">
+                  <Form.Label>Selling Price</Form.Label>
+                  <Form.Control
+                    type="number"
+                    value={editItem.sellingPrice}
+                    onChange={(e) => setEditItem({ ...editItem, sellingPrice: e.target.value })}
+                  />
+                </Form.Group>
+              </Row>
+
+              <Row>
+                <Form.Group as={Col} className="mb-2">
+                  <Form.Label>Quantity</Form.Label>
+                  <Form.Control
+                    type="number"
+                    value={editItem.quantity}
+                    onChange={(e) => setEditItem({ ...editItem, quantity: e.target.value })}
+                  />
+                </Form.Group>
+
+                <Form.Group as={Col} className="mb-2">
+                  <Form.Label>Unit</Form.Label>
+                  <Form.Select
+                    value={editItem.unit}
+                    onChange={(e) => setEditItem({ ...editItem, unit: e.target.value })}
+                  >
+                    <option>Piece</option>
+                    <option>Box</option>
+                    <option>Kg</option>
+                    <option>Gram</option>
+                    <option>Liter</option>
+                  </Form.Select>
+                </Form.Group>
+              </Row>
+            </Form>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="success" onClick={handleEditSubmit}>Save Changes</Button>
+          <Button variant="secondary" onClick={() => setShowEditModal(false)}>Cancel</Button>
         </Modal.Footer>
       </Modal>
     </>
+
   )
 }
 

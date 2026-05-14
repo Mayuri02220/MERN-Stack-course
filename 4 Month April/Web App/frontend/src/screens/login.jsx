@@ -2,27 +2,36 @@ import React from 'react'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
-const [Email, setEmail] = useState();
-    const [Password, setPassword] = useState();
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const navigate = useNavigate()
 
- const handleLoginSubmit = async () => {
-    
-    const payload = {
-           email: "email",
-      password: "password"
-    };
+  const handleLoginSubmit = async () => {
+    try {
 
-    const apiResponse = await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/login`, payload
-      
-    ).then(console.log("Yes")). 
-      catch((error) => console.log(error));
+      const apiResponse = await axios.post
+        (`${import.meta.env.VITE_API_URL_BACKEND}/login`,
+          {
+            email: email,
+            password: password
+          }
+        )
+      console.log(apiResponse.data, "login response");
+      localStorage.setItem("token", apiResponse.data.token)
+      toast.success("Login Successful!")
+     
+      navigate("/dashboard")
 
-    console.log(apiResponse, "payload");
+    } catch (error) {
+      console.log(error)
+      toast.error("Login Failed! Check your email or password.")
+    }
   };
-
 
 
   return (
@@ -32,19 +41,21 @@ const [Email, setEmail] = useState();
           <Card.Title>Login</Card.Title>
           <form>
             <input type='text' placeholder='Enter Email'
-            name="email" 
-            onChange={(event) => setEmail(event.target.value)} value={Email} ></input>
+              name="email"
+              onChange={(event) => setEmail(event.target.value)} value={Email} ></input>
             <br /> <br />
 
             <input type='text' placeholder='Enter Password'
-            name="password" 
-            onChange={(event) => setPassword(event.target.value)} value={Password} ></input>
+              name="password"
+              onChange={(event) => setPassword(event.target.value)} value={Password} ></input>
             <br /> <br />
+
+            <Button className="btn btn-success text=white w-100"  
+             onClick={handleLoginSubmit} >
+             Login </Button>
+            <br/> <br/>
             
-            <Button  className="btn btn-success text=white"> 
-              <a href='/Dashboard'>Login</a></Button>
-              <br />
-              <p className='text-danger'>Don't have an account?<a href='/Register'>Register</a> </p>
+            <p className='text-danger'>Don't have an account?<a href='/Register'>Register</a> </p>
           </form>
         </Card.Body>
       </Card>

@@ -5,7 +5,7 @@ const authMiddleware = async (req, res, next) => {
                                
         const token = req.header("x-auth-token") || req.header("Authorization")?.replace("Bearer", "");
         if (token) {
-
+    
             const decode = jwt.verify(token, process.env.JWT_SECRET_KEY)
             console.log(decode, "===>")
             req.userId = decode.userId 
