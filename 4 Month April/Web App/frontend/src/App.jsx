@@ -1,12 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
 import Login from './screens/Login';
 import Register from './screens/Register';
 import Items from './screens/Items'
 import Dashboard from './screens/Dashboard';
 import AuthNavBar from "./components/AuthNavBar"
+
 import { ToastContainer, toast } from 'react-toastify';
-import { ProtectedRoute, PublicRoute } from "./components/ProtectedRoutes"
+import { ProtectedRoutes, PublicRoute } from "./components/ProtectedRoutes"
 
 
 const App = () => {
@@ -32,15 +34,14 @@ const App = () => {
         <AuthNavBar />
         <Routes>
 
-          <Route path="/" element=
-            {<PublicRoute><Login /></PublicRoute>} />
+          <Route path="/login" element=
+          {<PublicRoute><Login /></PublicRoute>} />
 
           <Route path="/register" element=
             {<PublicRoute><Register /></PublicRoute>} />
 
           <Route path="/items" element=
             {<ProtectedRoutes><Items /></ProtectedRoutes>} />
-
 
           <Route path="/dashboard" element=
             {<ProtectedRoutes> <Dashboard /> </ProtectedRoutes>} />

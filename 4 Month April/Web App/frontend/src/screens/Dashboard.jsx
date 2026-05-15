@@ -21,7 +21,8 @@ const Dashboard = () => {
         }
       )
 
-      console.log(apiResponse.data, "dashboard data")
+      
+      //console.log(apiResponse.data, "dashboard data")
 
       // Save the data in state so we can show it on screen
       setDashboardData(apiResponse.data.data)

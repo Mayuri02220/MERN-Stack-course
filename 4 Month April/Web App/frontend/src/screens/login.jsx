@@ -25,7 +25,7 @@ const Login = () => {
       localStorage.setItem("token", apiResponse.data.token)
       toast.success("Login Successful!")
      
-      navigate("/dashboard")
+      navigate("/")
 
     } catch (error) {
       console.log(error)
@@ -36,7 +36,7 @@ const Login = () => {
 
   return (
     <div>
-      <Card className='text-center m-5'>
+      <Card className='text-center m-3'>
         <Card.Body>
           <Card.Title>Login</Card.Title>
           <form>
@@ -50,7 +50,7 @@ const Login = () => {
               onChange={(event) => setPassword(event.target.value)} value={Password} ></input>
             <br /> <br />
 
-            <Button className="btn btn-success text=white w-100"  
+            <Button className="btn btn-success text=white "  
              onClick={handleLoginSubmit} >
              Login </Button>
             <br/> <br/>

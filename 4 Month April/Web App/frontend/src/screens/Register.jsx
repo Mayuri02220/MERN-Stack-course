@@ -42,7 +42,7 @@ const Register = () => {
 
   return (
     <div>
-      <Card className='text-center m-5'>
+      <Card className='text-center m-5' >
         <Card.Body>
           <Card.Title>Register</Card.Title>
 
@@ -68,7 +68,7 @@ const Register = () => {
             Register </Button>
           <br /> <br />
           
-          <p className='text-danger'>Already have an account?<a href='/'>Login</a> </p>
+          <p className='text-danger'>Already have an account?<a href="/">Login</a> </p>
         </Card.Body>
       </Card>
     </div>

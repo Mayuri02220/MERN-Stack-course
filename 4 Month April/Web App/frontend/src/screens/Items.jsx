@@ -8,20 +8,22 @@ import Modal from 'react-bootstrap/Modal';
 import { ToastContainer, toast } from 'react-toastify'; //alert msg
 import axios from 'axios'; //backend API  integration data 
 import "./../style.css";
+import "../screens/App.css"
 import { useState } from 'react';
 import { useEffect } from 'react';// hooks    they store data 
 
 
 function Items() {
 
-  const [itemName, setItemName] = useState();  //store data in variable
-  const [discription, setDiscription] = useState();
-  const [purchasePrice, setPurchasePrice] = useState();
-  const [sellingPrice, setSellingPrice] = useState();
-  const [quantity, setQuantity] = useState();
-  const [unit, setUnit] = useState();
+  const [itemName, setItemName] = useState("");
+const [discription, setDiscription] = useState("");
+const [purchasePrice, setPurchasePrice] = useState("");
+const [sellingPrice, setSellingPrice] = useState("");
+const [quantity, setQuantity] = useState("");
+const [unit, setUnit] = useState("");
   const [itemData, setData] = useState();
 
+  
   // const [show, setShow] = useState(false);
   // const [id, setId] = useState()
 
@@ -31,51 +33,47 @@ function Items() {
   const [showEditModal, setShowEditModal] = useState(false)
   const [editItem, setEditItem] = useState(null)
 
-  const getToken = () => {
-    const token = localStorage.getItem("token");
-    //   return token;
-    // };
+  
+ const getToken = () => localStorage.getItem("token");
+  //async function SubmitForm(e) {cd  
+  const SubmitForm = async (e) => {
+    try {
+      e.preventDefault(); //page refresh
 
-    //async function SubmitForm(e) {
-    const SubmitForm = async (e) => {
-      try {
-        e.preventDefault(); //page refresh
+      const data = {  //object create
+        name: itemName,
+        discription: discription,
+        purchasePrice: purchasePrice,
+        sellingPrice: sellingPrice,
+        quantity: quantity,
+        unit: unit
+      };
+      //console.log(data, "Form Submitted");
 
-        const data = {  //object create
-          name: itemName,
-          discription: discription,
-          purchasePrice: purchasePrice,
-          sellingPrice: sellingPrice,
-          quantity: quantity,
-          unit: unit
-        };
-        //console.log(data, "Form Submitted");
-
-        await axios.post(`${import.meta.env.VITE_API_URL_BACKEND}/create-items`, data,
+      await axios.post
+        (`${import.meta.env.VITE_API_URL_BACKEND}/create-items`, data,
           {
             headers: { "x-auth-token": getToken() }
-          })
+          }
+        )
 
-        setItemName("")
-        setDiscription("")
-        setPurchasePrice("")
-        setSellingPrice("")
-        setQuantity("")
-        setUnit("")
+      setItemName("")
+      setDiscription("")
+      setPurchasePrice("")
+      setSellingPrice("")
+      setQuantity("")
+      setUnit("")
 
-        // Refresh item list
-        getAllItemsData()
+      // Refresh item list
+      getAllItemsData()
 
-        // .then(console.log("Yes")).catch((error) => console.log(error));
-        //console.log(apiResponse, "apiResponse ==>");
+      // .then(console.log("Yes")).catch((error) => console.log(error));
+      //console.log(apiResponse, "apiResponse ==>");
+      toast.success("Form Submitted")
 
-
-        toast.success("Form Submitted")
-
-      } catch (error) {
-        console.log(error);
-        toast.error("Failed to add item!")
-      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to add item!")
     }
   }
 
@@ -88,7 +86,7 @@ function Items() {
           }
         );           //backend api data fetch
 
-      setData(responseData.data);
+      setData(apiResponse.data.data);
 
     } catch (error) {
       console.log(error);
@@ -106,21 +104,13 @@ function Items() {
   const openDeleteModel = (_id) => {
     setShowDeleteModal(true)
     setDeleteId(_id)
-    // try {
-    //   setShow(true);
-    //   setId(_id)
 
-    //   console.log(_id, "id ==>");
-    //   console.log("call delete function");
-    // } catch (error) {
-    //   console.log(error)
-    // }
   };
 
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `${import.meta.env.VITE_API_URL_BACKED}/delete-item/${deleteId}`,
+        `${import.meta.env.VITE_API_URL_BACKEND}/delete-items/${deleteId}`,
         {
           headers: { "x-auth-token": getToken() }
         }
@@ -135,19 +125,10 @@ function Items() {
       toast.error("Failed to delete item!")
     }
   }
-  //     console.log(id, "id ==>");
-  //     const apiResponse = await axios.delete(`${import.meta.env.VITE_API_URL_BACKEND}/delete-items/${id}`);
-  //     setShow(false);
-  //     console.log(apiResponse)
-  //     getAllItemsData(); //fun call for latest data in db 
 
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // };
 
-  const openEditModal = (item) => {  // Store the item we want to edit in state
-    setEditItem(item)
+  const openEditModal = (items) => {  // Store the item we want to edit in state
+    setEditItem(Items)
     setShowEditModal(true)
   }
 
@@ -155,7 +136,7 @@ function Items() {
   const handleEditSubmit = async () => {
     try {
       await axios.put
-        (`${import.meta.env.VITE_API_URL_BACKED}/update-item`,
+        (`${import.meta.env.VITE_API_URL_BACKEND}/Update-items`,
           {    // item to update
             id: editItem._id,
             name: editItem.name,
@@ -236,7 +217,6 @@ function Items() {
                 </Form.Group>
               </Row>
 
-
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridCity">
                   <Form.Label>Quantity</Form.Label>
@@ -284,37 +264,41 @@ function Items() {
                 </tr>
               </thead>
               <tbody>
-
-                {itemData && itemData.map((item, index) => {
-                  <tr key={item + 1}>
+                {itemData && itemData.map((items, index) => (
+                  <tr key={items._id}>
                     <td>{index + 1}</td>
-                    <td>{each.name}</td>
-                    <td>{each.discription}</td>
-                    <td>{each.purchasePrice}</td>
-                    <td>{each.sellingPrice}</td>
-                    <td>{each.quantity}</td>
-                    <td>{each.unit}</td>
+                    <td>{items.name}</td>
+                    <td>{items.discription}</td>
+                    <td>{items.purchasePrice}</td>
+                    <td>{items.sellingPrice}</td>
+                    <td>{items.quantity}</td>
+                    <td>{items.unit}</td>
 
                     <td className='d-flex'>
-                      <button className="btn btn-success btn-sm me-1"
-                        onClick={() => openEditModal(item)}>
-                        Edit </button>
-                    
-                      <button className='btn btn-danger mx-2'
-                        onClick={() => openDeleteModel(item._id)}>
-                        Delete</button>
+                      <button
+                        className="btn btn-success btn-sm me-1"
+                        onClick={() => openEditModal(items)}
+                      >
+                        Edit
+                      </button>
+
+                      <button
+                        className='btn btn-danger mx-2'
+                        onClick={() => openDeleteModel(items._id)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
-                }
-                )
-                }
+                ))}
 
                 {itemData && itemData.length === 0 && (
                   <tr>
-                    <td colSpan="8" className="text-center text-muted">No items found. Add your first item!</td>
+                    <td colSpan="8" className="text-center text-muted">
+                      No items found. Add your first item!
+                    </td>
                   </tr>
                 )}
-
               </tbody>
             </Table>
           </div>
@@ -430,7 +414,7 @@ function Items() {
     </>
 
   )
-}
 
+}
 export default Items
 
