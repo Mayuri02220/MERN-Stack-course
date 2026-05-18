@@ -67,8 +67,7 @@ const [unit, setUnit] = useState("");
       // Refresh item list
       getAllItemsData()
 
-      // .then(console.log("Yes")).catch((error) => console.log(error));
-      //console.log(apiResponse, "apiResponse ==>");
+      
       toast.success("Form Submitted")
 
     } catch (error) {
@@ -166,16 +165,6 @@ const [unit, setUnit] = useState("");
   return (
     <>
 
-      {/* <ToastContainer position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light" /> */}
 
       <h1 className='text-danger text-center my-5'> <b>Manage Items</b></h1>
       <div className="container">
@@ -306,20 +295,7 @@ const [unit, setUnit] = useState("");
       </div>
 
 
-      {/* <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-             <Modal.Title> Delete Confirmation </Modal.Title>
-           </Modal.Header>
-           <Modal.Body>Are you sure want to delete this Item</Modal.Body>
-           <Modal.Footer>
-             <Button variant="secondary" onClick={handleDelete}>
-               Yes
-             </Button>
-             <Button variant="primary" onClick={handleClose}>
-               No
-             </Button>
-           </Modal.Footer>
-         </Modal> */}
+     
 
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
